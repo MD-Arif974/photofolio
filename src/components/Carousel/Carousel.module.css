@@ -1,0 +1,89 @@
+.carouselCont{
+   width:90vw;
+   height:100vh;
+   /* border:2px solid blue; */
+   background-color: rgba(128, 128, 128, 0.243);
+   margin: auto;
+   display: flex;
+   position: relative;
+}
+.prevCont{
+    width:4%;
+    height:50px;
+    border:2px solid black;
+    border-radius: 50%;
+    background-color: aliceblue;
+    border:none;
+    position: absolute;
+    top:40%;
+    left:16%;
+    
+
+}
+
+.prevCont:hover{
+    background-color: #3498db;
+    cursor: pointer;
+}
+.prevCont img{
+    width:40%;
+    height:40%;
+    margin-top:25%;
+    margin-left:22%;
+    
+}
+.carouselImgCont{
+   width:60%;
+   height:80%;
+   position: absolute;
+   top:2%;
+   left:22%;
+   
+}
+.carouselImgCont img{
+    width:100%;
+    height:100%;
+}
+.nextCont{
+    width:4%;
+    height:50px;
+    border:2px solid black;
+    border-radius: 50%;
+    border:none;
+    background-color: aliceblue;
+    position:absolute;
+    top:40%;
+    right:12%;
+}
+.nextCont:hover{
+    background-color: #3498db;
+    cursor: pointer;
+}
+.nextCont img{
+    width:40%;
+    height:40%;
+    margin-top:25%;
+    margin-left:27%;
+
+}
+.removeCont{
+    width:4%;
+    height:50px;
+    border:2px solid black;
+    border-radius: 50%;
+    background-color: aliceblue;
+    border:none;
+    position:absolute;
+    top:-1%;
+    right:8%;
+}
+.removeCont:hover{
+    background-color: #3498db;
+    cursor: pointer;
+}
+.removeCont img{
+    width:40%;
+    height:40%;
+    margin-top:25%;
+    margin-left:27%;
+}

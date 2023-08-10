@@ -1,0 +1,60 @@
+
+.albumForm{
+    /* border:2px solid black; */
+    width:50vw;
+    height:140px;
+    margin: auto;
+    margin-top: 3%;
+    position: relative;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 8px 0 rgba(99,99,99,.2);
+
+}
+.albumForm h2{
+   font-weight: bold;
+   font-size: 2rem;
+   position: absolute;
+   top:-15%;
+   left:2%;
+}
+form{
+    width:100%;
+    height: auto;
+    /* border:2px solid red; */
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    top:55%;
+}
+form input{
+     width:60%;
+     height:35px;
+     border-radius: 20px;
+     font-size: 25px;
+     padding:5px;
+     margin-left: 2%;
+     border:none;
+    
+}
+#clear{
+   width:13%;
+   height:35px;
+   margin-top: 3px;
+   border-radius: 10px;
+   font-size: 20px;
+   background-color: red;
+   color: white;
+   border:none;
+  
+}
+#create{
+   width:13%;
+   height:35px;
+   margin-top: 3px;
+   border-radius: 10px;
+   font-size: 20px;
+   background-color: #07f;
+   color: white;
+   border:none
+  
+}

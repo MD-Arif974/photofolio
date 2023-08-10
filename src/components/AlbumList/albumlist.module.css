@@ -1,0 +1,101 @@
+.album {
+    width: 70vw;
+    height: 100vh;
+    /* border: 2px solid yellow; */
+    margin: auto;
+    position: relative;
+   
+}
+
+.albumHeading {
+    width: 100%;
+    height: 10vh;
+    /* border: 2px solid red; */
+     display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 30px; 
+
+}
+
+.albumHeading h2{
+    font-size: 2rem;
+    font-weight: bold;
+    /* border:2px solid yellow; */
+    position: absolute;
+    top:-15%;
+
+}
+.albumHeading button{
+    
+    width:10%;
+    height:45%;
+    font-size:1rem;
+    font-weight: bold;
+    color:rgb(14, 89, 238);
+    border:2px solid rgb(21, 164, 212);
+    border-radius: 10px;
+    background-color: rgba(173, 216, 230, 0.596);
+    position: absolute;
+    top:30%;
+    right:1%;
+}
+.albumList {
+    width:100%;
+    height:80%;
+    /* border:5px solid blue; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position:absolute;
+    top:18%;
+   
+}
+
+.innerList{
+    box-shadow: 0 2px 8px 0 rgba(99,99,99,.2);
+    background-color: #f4f4f4;
+    border:2px solid gray;
+    width:18.3%;
+    height:22%;
+ 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.innerList:hover{
+    cursor: pointer;
+    background-color: rgba(0, 98, 255, 0.808);
+    color:white;
+}
+.albumCont{
+    width:90%;
+    height:70%;
+    margin:auto;
+    margin-top:5px;
+    border-radius: 10px;
+    background-color: white;
+    border:2px solid white;
+    position:relative;
+
+}
+.albumCont img{
+    width:50px;
+    height:50px;
+    position: absolute;
+    top:30%;
+    left:35%;
+
+}
+.albumTitle{
+    width:100%;
+    height:20%;
+    /* border:2px solid red; */
+    text-align: center;
+
+}
+.albumTitle span{
+  
+    font-size:1.5rem;
+    font-weight: bold;
+}
