@@ -4,11 +4,18 @@ import next from '../../images/next (1).png';
 import remove from '../../images/x.png';
 
 
+import { useEffect } from 'react';
 
-const Carousel = () => {
+const Carousel = ({carouselMode,setCarouselMode}) => {
+    
+      useEffect(() => {
+         console.log("before",carouselMode);
+          setCarouselMode(true);
+          console.log("after",carouselMode);
+      },[])
         return(
             <>
-               <div className={styles.carouselCont}>
+               <div className={styles.carouselCont}  id = 'carouselCont'>
                  <div className={styles.prevCont}>
                     <img src={prev} alt='prev-image' />
                  </div>

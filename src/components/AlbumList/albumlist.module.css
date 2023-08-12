@@ -40,6 +40,9 @@
     top:30%;
     right:1%;
 }
+.albumHeading button:hover{
+    cursor: pointer;
+}
 .albumList {
     width:100%;
     height:80%;

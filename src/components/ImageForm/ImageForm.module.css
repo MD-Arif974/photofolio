@@ -67,3 +67,10 @@ form{
     top:65%;
     right:30%;
 }
+
+#imgFormClear:hover{
+    cursor: pointer;
+}
+#imgFormAdd:hover{
+    cursor: pointer;
+}

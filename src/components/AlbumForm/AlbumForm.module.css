@@ -17,14 +17,14 @@
    top:-15%;
    left:2%;
 }
-form{
+.albumForm form{
     width:100%;
-    height: auto;
+    height: 40%;
     /* border:2px solid red; */
     display: flex;
     justify-content: space-around;
     position: absolute;
-    top:55%;
+    top:50%;
 }
 form input{
      width:60%;
@@ -57,4 +57,11 @@ form input{
    color: white;
    border:none
   
+}
+
+#clear:hover{
+   cursor: pointer;
+}
+#create:hover{
+   cursor: pointer;
 }

@@ -2,7 +2,7 @@
 .AlbumImageCont{
     width:70vw;
     height:100vh;
-    border:2px solid coral;
+    /* border:2px solid coral; */
     margin: auto;
     position: relative;
 }
@@ -19,7 +19,7 @@
     /* border:2px solid yellow; */
    
     border-radius: 50%;
-    background-color: #fff;
+    background-color: rgba(211, 211, 211, 0.839);
     border: none;
     padding:8px;
     position: absolute;
@@ -105,6 +105,9 @@
     position: relative;
 }
 
+.imageCont:hover{
+    cursor: pointer;
+}
 .imgCont{
     width:95%;
     height:75%;
