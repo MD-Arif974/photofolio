@@ -1,11 +1,14 @@
 .carouselCont{
-   width:90vw;
+   width:100vw;
    height:100vh;
    /* border:2px solid blue; */
-   background-color: rgba(128, 128, 128, 0.243);
+   background-color: rgba(128, 128, 128, 0.817);
    margin: auto;
+   margin-top:-18px;
+
    display: flex;
-   position: relative;
+   position: fixed;
+   z-index: 500;
 }
 .prevCont{
     width:4%;
@@ -43,6 +46,7 @@
 .carouselImgCont img{
     width:100%;
     height:100%;
+    transition: .3s;
 }
 .nextCont{
     width:4%;
@@ -78,7 +82,7 @@
     right:8%;
 }
 .removeCont:hover{
-    background-color: #3498db;
+    background-color: rgb(255, 19, 0);
     cursor: pointer;
 }
 .removeCont img{

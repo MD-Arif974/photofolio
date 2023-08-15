@@ -6,26 +6,22 @@ import remove from '../../images/x.png';
 
 import { useEffect } from 'react';
 
-const Carousel = ({carouselMode,setCarouselMode}) => {
+const Carousel = ({handlePrev, handleNext,handleCancel, urlImg}) => {
     
-      useEffect(() => {
-         console.log("before",carouselMode);
-          setCarouselMode(true);
-          console.log("after",carouselMode);
-      },[])
+
         return(
             <>
                <div className={styles.carouselCont}  id = 'carouselCont'>
-                 <div className={styles.prevCont}>
+                 <div className={styles.prevCont} onClick={handlePrev}>
                     <img src={prev} alt='prev-image' />
                  </div>
                  <div className={styles.carouselImgCont}>
-                    <img src='https://webneel.com/daily/sites/default/files/images/daily/08-2018/1-nature-photography-spring-season-mumtazshamsee.jpg' alt='prev-image' />
+                    <img src={urlImg} alt='prev-image' />
                  </div>
-                 <div className={styles.nextCont}>
+                 <div className={styles.nextCont} onClick={handleNext}>
                     <img src={next} alt='prev-image' />
                  </div>
-                 <div className={styles.removeCont}>
+                 <div className={styles.removeCont} onClick={handleCancel}>
                       <img src={remove} alt='prev-image' />
                  </div>
                </div>

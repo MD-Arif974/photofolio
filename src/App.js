@@ -1,16 +1,14 @@
+import Navbar from "./components/Navbar/Navbar";
+import AlbumList from "./components/AlbumList/AlbumList";
 
-import Navbar from './components/Navbar/Navbar';
-import AlbumList from './components/AlbumList/AlbumList';
-import { useRef, useState} from 'react';
-
-
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
-  
   return (
     <div className="App">
-        <Navbar />
-        <AlbumList />
+      <ToastContainer />
+      <Navbar />
+      <AlbumList />
     </div>
   );
 }
