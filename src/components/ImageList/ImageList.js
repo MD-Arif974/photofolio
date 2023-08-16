@@ -81,9 +81,9 @@ const ImageList = ({ id, album, handleImageList }) => {
         ...doc.data(),
       };
     });
-
-    setImageListArr(imageArr);
     setLoading(false);
+    setImageListArr(imageArr);
+   
   };
 
   useEffect(() => {
@@ -118,6 +118,8 @@ const ImageList = ({ id, album, handleImageList }) => {
       });
 
       toast.success("Image Updated Successfully!!");
+      setImgFormData({});
+      setImageForm(false);
     } else {
      
       if (
@@ -133,10 +135,13 @@ const ImageList = ({ id, album, handleImageList }) => {
       toast.success("Image Added Successfully!!");
      
     }
-
-    setImageLoading(false);
-    clearImageInput();
+     
    
+    
+    if(titleRef.current !== null ) titleRef.current.value = "";
+    if(urlRef.current !== null )  urlRef.current.value = "";
+    setImageLoading(false);
+    
    
   };
 
@@ -144,7 +149,7 @@ const ImageList = ({ id, album, handleImageList }) => {
   const clearImageInput = (e) => {
     e.preventDefault();
     if(titleRef.current !== null) titleRef.current.value = "";
-    if(urlRef.current !== null)  urlRef.current.value = "";
+     urlRef.current.value = "";
   };
 
   // deleteImage func to delete document from firbase

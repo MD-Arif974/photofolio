@@ -9,17 +9,24 @@ const ImageForm = ({addImage,clearImageInput, titleRef, urlRef,imageForm,imgForm
   imgToUpdate, album
 }) => {
 
-   
+  
   
     useEffect(() => {
         
-        if(!imgToUpdate) return;
-        
-        titleRef.current.value = imgFormData.title;
-        urlRef.current.value = imgFormData.urlLink;
+        if(!imgToUpdate) {
+            
+            return;
+        };
+
+        if(Object.keys(imgFormData).length > 0) {
+            titleRef.current.value = imgFormData.title;
+            urlRef.current.value = imgFormData.urlLink;
+        }
+       
+       
 
         
-    },[imgFormData])
+    },[])
     return(
         <>
            <div className={styles.imageForm}>
