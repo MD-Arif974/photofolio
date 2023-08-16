@@ -178,3 +178,39 @@
     transform: scale(1.1);
 }
 
+.searchInputCont{
+    width:20%;
+    height:30px;
+    /* border:2px solid red; */
+    display: flex;
+    position:absolute;
+    right:20%;
+    top:18%;
+}
+.searchInputCont input{
+    width:80%;
+    height:100%;
+    font-size: 20px;
+}
+.searchInputCont img{
+    width:15%;
+    height:100%;
+    position: absolute;
+    top:5%;
+    right:-5%;
+
+}
+.searchInputCont img:hover{
+    cursor: pointer;
+}
+.loader {
+    /* width:100px; */
+    height: 300px;
+    /* border:2px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:absolute;
+    top:30%;
+    left:50%;
+  }

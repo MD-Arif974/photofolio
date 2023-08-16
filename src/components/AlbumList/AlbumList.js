@@ -8,6 +8,8 @@ import ImageForm from "../ImageForm/ImageForm";
 import Carousel from "../Carousel/Carousel";
 import { useState, useRef, useEffect } from "react";
 
+import Spinner from 'react-spinner-material';
+
 import { toast } from "react-toastify";
 
 import { db } from "../../firebaseInit";
@@ -23,10 +25,12 @@ const AlbumList = ({}) => {
   const [id, setId] = useState(null);
   const [albumName, setAlbumName] = useState({});
   const [albumHoverIndex, setAlbumHoverIndex] = useState(null);
+  const [loading,setLoading] = useState(false);
 
   const inputRef = useRef();
 
   const getAlbum = async () => {
+    setLoading(true);
     const querySnapshot = await getDocs(collection(db, "albums"));
     const albumArr = querySnapshot.docs.map((doc) => ({
       id: doc.id,
@@ -34,10 +38,11 @@ const AlbumList = ({}) => {
     }));
 
     setAlbumArr(albumArr);
+    setLoading(false);
   };
 
   useEffect(() => {
-    getAlbum();
+      getAlbum();
   }, [albumLoading]);
 
   const handleImageList = (e, id, album) => {
@@ -63,7 +68,7 @@ const AlbumList = ({}) => {
 
     setAlbumLoading(false);
     toast.success("Album Added Successfully!!");
-    data.current.value = "";
+    if(data.current) data.current.value = "";
   };
 
   // clear album form
@@ -71,8 +76,17 @@ const AlbumList = ({}) => {
     e.preventDefault();
     data.current.value = "";
   };
+
+  if(loading) {
+    return (
+      <div className={styles.loader}>
+         <Spinner color="#0077ff" />
+    </div>
+    );
+  }
   return (
     <>
+     
       {albumForm ? (
         <AlbumForm
           inputRef={inputRef}

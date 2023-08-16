@@ -4,6 +4,7 @@ import back from "../../images/back.png";
 import search from "../../images/search.png";
 import edit from "../../images/edit.png";
 import dlt from "../../images/delete.png";
+import xMark from '../../images/x-mark.png';
 
 // Components imported
 
@@ -14,6 +15,7 @@ import {toast} from 'react-toastify';
 // import db
 
 import { db } from "../../firebaseInit";
+import Spinner from 'react-spinner-material';
 
 // import Firestore methods
 import {
@@ -35,6 +37,9 @@ const ImageList = ({ id, album, handleImageList }) => {
   const [imageListArr, setImageListArr] = useState([]);
   const [imageLoading, setImageLoading] = useState(false);
   const [activeCarouselIndex, setActiveCarouselIndex] = useState(null);
+  const [searchBar,setSearchBar] = useState(false);
+  const [value,setValue] = useState('');
+  const [loading,setLoading] = useState(false);
 
   const titleRef = useRef();
   const urlRef = useRef();
@@ -55,7 +60,16 @@ const ImageList = ({ id, album, handleImageList }) => {
      setActiveCarouselIndex(null);
   }
 
+
+  // handleSearchbar
+
+  const handleSearchBar = () => {
+      setSearchBar(false);
+      setValue('');
+  }
+
   const getImageList = async (id) => {
+    setLoading(true);
     const querySnapshot = await getDocs(collection(db, "albums", id, "images"));
     const imageArr = querySnapshot.docs.map((doc) => {
       return {
@@ -65,6 +79,7 @@ const ImageList = ({ id, album, handleImageList }) => {
     });
 
     setImageListArr(imageArr);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -137,7 +152,14 @@ const ImageList = ({ id, album, handleImageList }) => {
         setImageForm(!imageForm);
         setImgToUpdate(false);
   }
-
+   
+  if(loading) {
+    return (
+      <div className={styles.loader}>
+         <Spinner color="#0077ff" />
+    </div>
+    )
+  }
 
   return (
     <>
@@ -174,9 +196,16 @@ const ImageList = ({ id, album, handleImageList }) => {
               ? `Images in ${album.albumName}`
               : "No images found in the album."}
           </div>
-          <div className={styles.imageSearchIcon}>
+          {searchBar ? <div className= {styles.searchInputCont}>
+            <input type="text" placeholder="Search..." 
+              value={value}
+              onChange={e => setValue(e.target.value)}
+            />
+            <img src = {xMark} alt="clear" onClick={handleSearchBar}/>
+          </div> :imageListArr.length ?<div className={styles.imageSearchIcon} onClick={() => setSearchBar(true)}>
             <img src={search} alt="search icon" />
-          </div>
+          </div>: null }
+        
           <div
             className={
               imageForm ? styles.imageCancelButton : styles.imageAddButton
@@ -190,43 +219,49 @@ const ImageList = ({ id, album, handleImageList }) => {
           </div>
         </div>
         <div className={styles.imageListCont}>
-          {imageListArr.map((img, i) => (
-            <div
-              className={styles.imageCont}
-              key={img.id}
-              onMouseOver={() => setCurrentHoverIndex(i)}
-              onMouseLeave={() => setCurrentHoverIndex(null)}
-            
-            >
-              <div className={styles.imgCont}
-                onClick={() => setActiveCarouselIndex(i)}
-              >
-                <img src={img.urlLink} alt="album-pic" />
-              </div>
-              <div className={styles.imgNameCont}
-                onClick={() => setActiveCarouselIndex(i)}
-              >{img.title}</div>
+          {
+            imageListArr.filter(item => {
+                if(!value) return true;
+                if(item.title.includes(value)) return true;
+            })
+            .map((img, i) => (
               <div
-                className={`${styles.imageEditCont} ${
-                  currHoverIndex === i && styles.active
-                }`}
+                className={styles.imageCont}
+                key={img.id}
+                onMouseOver={() => setCurrentHoverIndex(i)}
+                onMouseLeave={() => setCurrentHoverIndex(null)}
+              
               >
-                <img
-                  src={edit}
-                  className={styles.editImg}
-                  alt="edit-pic"
-                  onClick={(e) => handleEditForm(e, img)}
-                  
-                />
-                <img
-                  src={dlt}
-                  className={styles.dltImg}
-                  alt="delete-pic"
-                  onClick={(e) => deleteImage(e, img.id, id)}
-                />
+                <div className={styles.imgCont}
+                  onClick={() => setActiveCarouselIndex(i)}
+                >
+                  <img src={img.urlLink} alt="album-pic" />
+                </div>
+                <div className={styles.imgNameCont}
+                  onClick={() => setActiveCarouselIndex(i)}
+                >{img.title}</div>
+                <div
+                  className={`${styles.imageEditCont} ${
+                    currHoverIndex === i && styles.active
+                  }`}
+                >
+                  <img
+                    src={edit}
+                    className={styles.editImg}
+                    alt="edit-pic"
+                    onClick={(e) => handleEditForm(e, img)}
+                    
+                  />
+                  <img
+                    src={dlt}
+                    className={styles.dltImg}
+                    alt="delete-pic"
+                    onClick={(e) => deleteImage(e, img.id, id)}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
      
