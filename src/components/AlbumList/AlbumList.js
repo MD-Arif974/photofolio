@@ -2,10 +2,7 @@ import styles from "./albumlist.module.css";
 import albumPic from "../../images/photos.png";
 import AlbumForm from "../AlbumForm/AlbumForm";
 import ImageList from "../ImageList/ImageList";
-import edit from "../../images/edit.png";
-import dlt from "../../images/delete.png";
-import ImageForm from "../ImageForm/ImageForm";
-import Carousel from "../Carousel/Carousel";
+
 import { useState, useRef, useEffect } from "react";
 
 import Spinner from 'react-spinner-material';
@@ -29,6 +26,7 @@ const AlbumList = ({}) => {
 
   const inputRef = useRef();
 
+   // Get all documents initially
   const getAlbum = async () => {
     setLoading(true);
     const querySnapshot = await getDocs(collection(db, "albums"));
@@ -45,6 +43,7 @@ const AlbumList = ({}) => {
       getAlbum();
   }, [albumLoading]);
 
+   // handleImageList is to change the state
   const handleImageList = (e, id, album) => {
     e.preventDefault();
     setImageList(!imageList);
@@ -53,8 +52,8 @@ const AlbumList = ({}) => {
     setAlbumForm(false);
   };
 
-  const handleAlbumForm = () => {};
-
+ 
+  // addalbum func is to add documents to firebase
   const AddAlbum = async (data, e) => {
     e.preventDefault();
     setAlbumLoading(true);
@@ -141,7 +140,7 @@ const AlbumList = ({}) => {
           </div>
         </>
       )}
-      {/* <Carousel /> */}
+     
     </>
   );
 };

@@ -27,6 +27,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
+// import hooks 
 import { useEffect, useRef, useState } from "react";
 
 const ImageList = ({ id, album, handleImageList }) => {
@@ -45,17 +46,19 @@ const ImageList = ({ id, album, handleImageList }) => {
   const urlRef = useRef();
 
  
-  
+  // handlePrev func to show prev images in carousel
   const handlePrev = () => {
      if(activeCarouselIndex === 0) return setActiveCarouselIndex(imageListArr.length - 1);
      setActiveCarouselIndex(prev => prev - 1)
   }
 
+   // handleNext func to show next images in carousel
   const handleNext = () => {
     if(activeCarouselIndex === imageListArr.length - 1) return setActiveCarouselIndex(0);
     setActiveCarouselIndex(prev => prev + 1)
   }
-
+  
+   // handleCancel func to the carousel
   const handleCancel = () => {
      setActiveCarouselIndex(null);
   }
@@ -67,7 +70,8 @@ const ImageList = ({ id, album, handleImageList }) => {
       setSearchBar(false);
       setValue('');
   }
-
+  
+  // getImageList func to get all images documents from firbase
   const getImageList = async (id) => {
     setLoading(true);
     const querySnapshot = await getDocs(collection(db, "albums", id, "images"));
@@ -87,6 +91,8 @@ const ImageList = ({ id, album, handleImageList }) => {
     
   },[imageLoading,imgFormData]);
 
+
+   // handleEditform func to set the state when we click on edit button
   const handleEditForm = (e, imgData) => {
     e.preventDefault();
   
@@ -95,7 +101,9 @@ const ImageList = ({ id, album, handleImageList }) => {
     setImgFormData(imgData);
    
   };
+ 
 
+  // addImage func is to add  and also update documents on firebase
   const addImage = async (e) => {
     e.preventDefault();
     setImageLoading(true);
@@ -127,26 +135,28 @@ const ImageList = ({ id, album, handleImageList }) => {
     }
 
     setImageLoading(false);
-
-    if(titleRef.current !== null) titleRef.current.value = "";
-    if(urlRef.current !== null)  urlRef.current.value = "";
+    clearImageInput();
+   
    
   };
 
+  // clearImageInput func to clear the input fields
   const clearImageInput = (e) => {
     e.preventDefault();
-    titleRef.current.value = "";
-    urlRef.current.value = "";
+    if(titleRef.current !== null) titleRef.current.value = "";
+    if(urlRef.current !== null)  urlRef.current.value = "";
   };
 
+  // deleteImage func to delete document from firbase
   const deleteImage = async (e, id1, id2) => {
     e.preventDefault();
     setImageLoading(true);
     await deleteDoc(doc(db, "albums", id2, "images", id1));
-   
     toast.success("Image Deleted Successfully!!");
+   
   };
   
+  // handleAddCancel func to set the state on clicking on add album or cancel button
   const handleAddCancel = (e) => {
         e.preventDefault();
         setImageForm(!imageForm);
